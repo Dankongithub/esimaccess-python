@@ -17,7 +17,7 @@ def authenticate(api_key: str) -> httpx.Client:
         raise AuthError("API key is required for authentication")
 
     headers = {
-        "Authorization": f"RT-AccessCode {api_key}"
+        "RT-AccessCode": api_key
     }
     client = httpx.Client(headers=headers)
     return client

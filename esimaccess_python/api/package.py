@@ -47,17 +47,12 @@ class Package:
               }
             }
         """
-        import http.client
-
-        conn = http.client.HTTPSConnection("api.esimaccess.com")
         payload = {
             "locationCode": locationCode,
             "type": type,
             "packageCode": packageCode,
             "iccid": iccid
         }
-        headers = {}
-        conn.request("POST", "/api/v1/open/package/list", payload, headers)
-        res = conn.getresponse()
-        data = res.read()
-        return data.decode("utf-8")
+
+        response = self.client.post("https://api.esimaccess.com/api/v1/open/package/list", json=payload)
+        return response.text
