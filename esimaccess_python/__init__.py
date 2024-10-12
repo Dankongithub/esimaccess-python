@@ -1,4 +1,4 @@
-from .auth import authenticate
+from .auth import authenticate, AuthError
 from .api.package import Package
 
-__all__ = ['authenticate', 'Package']
+__all__ = ['authenticate', 'Package', AuthError]
