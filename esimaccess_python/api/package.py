@@ -1,11 +1,12 @@
 import httpx
-from typing import List
+from typing import List, Optional
+from esimaccess_python.api.pageparam import PageParam
 
 class Package:
     def __init__(self, client: httpx.Client):
         self.client = client
 
-    def list(self, locationCode: str = "", type: str = "", packageCode: str = "", iccid: str = ""):
+    def list(self, locationCode: Optional[str] = None, type: Optional[str] = "", packageCode: Optional[str] = "", iccid: Optional[str] = ""):
         """
         Request a list of all the available data packages offered. Optionally filter by country or region.
         
@@ -25,7 +26,7 @@ class Package:
         response = self.client.post("https://api.esimaccess.com/api/v1/open/package/list", json=payload)
         return response.text
 
-    def order(self, transactionId: str, packageInfoList: List, amount: int = -1):
+    def order(self, transactionId: str, packageInfoList: List, amount: Optional[int] = None):
         """
         Order profiles individualy or in batch. After successful ordering, the SM-DP+ server will return the OrderNo and allocate profiles asynchronously for the order.
 
@@ -36,10 +37,33 @@ class Package:
         """
         payload = {
             "transactionId": transactionId,
+            "amount": amount,
             "packageInfoList": packageInfoList
         }
-        if amount != -1:
-            payload["amount"] = amount
 
         response = self.client.post("https://api.esimaccess.com/api/v1/open/esim/order", json=payload)
         return response.text
+
+    def query(self, pager: PageParam, orderNo: Optional[str] = None, iccid: Optional[str] = None, startTime: Optional[str] = None, endTime: Optional[str] = None):
+        """
+        Query all eSIM profile details allocated to partner and their status.
+        :param pager: Page parameters for querying.
+        :param orderNo: Order number
+        :param iccid: eSIM ICCID
+        :param startTime: Start time (ISO UTC time)
+        :param endTime: End time (ISO UTC time).
+        """
+        payload = {
+            "orderNo": orderNo,
+            "iccid": iccid,
+            "pager": pager.to_dict(),
+            "startTime": startTime,
+            "endTime": endTime
+        }
+
+        response = self.client.post('https://api.esimaccess.com/api/v1/open/esim/query', json=payload)
+
+        return response.text
+
+
+
