@@ -14,7 +14,7 @@ The library needs to be configured with your account's access code which is avai
 ```python
 from esimaccess_python import Package, authenticate
 
-client = Package(authenticate("your api key"))
+client = Package(authenticate("Access code"))
 
 print(client.list())
 ```
