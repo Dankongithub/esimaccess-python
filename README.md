@@ -12,9 +12,9 @@ The library needs to be configured with your account's access code which is avai
 
 ### Installation
 
-'''
+```
 pip install esimaccess-python
-'''
+```
 
 ### To list all available data packages
 ```python
