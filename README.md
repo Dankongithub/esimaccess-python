@@ -10,11 +10,17 @@ See the [API Docs](https://docs.esimaccess.com/).
 
 The library needs to be configured with your account's access code which is availible in your developer dashboard.
 
+### Installation
+
+'''
+pip install esimaccess-python
+'''
+
 ### To list all available data packages
 ```python
 from esimaccess_python import Package, authenticate
 
 client = Package(authenticate("Access code"))
 
-print(client.list())
+print(client.balance())
 ```
