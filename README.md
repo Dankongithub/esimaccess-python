@@ -16,7 +16,7 @@ The library needs to be configured with your account's access code which is avai
 pip install esimaccess-python
 ```
 
-### To list all available data packages
+### To get account balance
 ```python
 from esimaccess_python import Package, authenticate
 
