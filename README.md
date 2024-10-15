@@ -1,6 +1,6 @@
 # Esimaccess Python Library
 
-Python SDK for the Esimaccess API, powered by httpx.
+Python SDK for the Esimaccess API, using httpx.
 
 ## Documentation
 
