@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md')) as f:
 
 setup(
     name="esimaccess-python",
-    version="0.1.0",
+    version="0.1.1",
     description="Python SDK for the Esimaccess API",
     author="Corbin Li",
     packages=find_packages(),
