@@ -2,10 +2,15 @@ from typing import Optional
 
 
 class PageParam:
-    def __init__(self, pageSize: int, pageNum: int, total: Optional[int]):
+    def __init__(self, pageSize: int, pageNum: int, total: int):
         self.pageSize = pageSize
         self.pageNum = pageNum
         self.total = total
+
+    def __init__(self, pageSize: int, pageNum: int):
+        self.pageSize = pageSize
+        self.pageNum = pageNum
+        self.total = None
 
     def to_dict(self) -> dict:
         """
